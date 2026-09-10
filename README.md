@@ -4,7 +4,7 @@
 [![ghcr.io](https://img.shields.io/badge/ghcr.io-aniliberty--top-blue?logo=docker)](https://github.com/DanielZubov/aniliberty-top/pkgs/container/aniliberty-top)
 [![Latest Release](https://img.shields.io/github/v/release/DanielZubov/aniliberty-top?sort=semver)](https://github.com/DanielZubov/aniliberty-top/releases/latest)
 
-Torznab-индексатор для [Aniliberty](https://www.aniliberty.top/) — позволяет искать аниме-релизы прямо из [Prowlarr]([https://prowlarr.com/](https://github.com/prowlarr/prowlarr)) и других *arr-приложений.
+Torznab-индексатор для [Aniliberty](https://www.aniliberty.top/) — позволяет искать аниме-релизы прямо из [Prowlarr](https://github.com/prowlarr/prowlarr) и других *arr-приложений.
 
 ---
 
