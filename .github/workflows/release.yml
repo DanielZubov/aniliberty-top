@@ -1,0 +1,46 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          # Заголовок + список изменений с прошлого тега
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          {
+            echo "## Aniliberty Torznab ${{ github.ref_name }}"
+            echo ""
+            echo "Docker image: \`ghcr.io/danielzubov/aniliberty-top:${{ github.ref_name }}\`"
+            echo ""
+            echo "### Изменения"
+            if [ -z "$PREV_TAG" ]; then
+              git log --pretty=format:"- %s (%h)" >> RELEASE_NOTES.md
+            else
+              git log ${PREV_TAG}..HEAD --pretty=format:"- %s (%h)" >> RELEASE_NOTES.md
+            fi
+            echo "" >> RELEASE_NOTES.md
+          } >> RELEASE_NOTES.md
+          cat RELEASE_NOTES.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: RELEASE_NOTES.md
+          generate_release_notes: true
+          draft: false
+          prerelease: false
