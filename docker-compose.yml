@@ -1,6 +1,6 @@
 services:
   anilibria-torznab:
-    build: .
+    image: ghcr.io/danielzubov/aniliberty-top:latest
     container_name: anilibria-torznab
     restart: unless-stopped
     ports:
@@ -10,12 +10,7 @@ services:
     environment:
       - TZ=Europe/Moscow
       - PYTHONUNBUFFERED=1
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:8020/health"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 3
-    #   start_period: 10s
+
 
 networks:
   srv_proxy:
