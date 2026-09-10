@@ -1,0 +1,22 @@
+services:
+  anilibria-torznab:
+    build: .
+    container_name: anilibria-torznab
+    restart: unless-stopped
+    ports:
+      - "8020:8020"
+    networks:
+      - srv_proxy
+    environment:
+      - TZ=Europe/Moscow
+      - PYTHONUNBUFFERED=1
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:8020/health"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 10s
+
+networks:
+  srv_proxy:
+    external: true
